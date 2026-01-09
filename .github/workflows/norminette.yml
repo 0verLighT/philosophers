@@ -1,0 +1,29 @@
+name: norminette 42
+
+on:
+  push:
+    paths-ignore:
+      - '.gitignore'
+      - 'LICENSE'
+      - 'meson.build'
+      - 'Makefile'
+      - 'README.md'
+      - 'shell.nix'
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install norminette 42 with pip
+        run: python3 -m pip install -U norminette
+      - name: norminette Philosophers
+        run: norminette ${{ github.workspace }}/philo/src ${{github.workspace}}/philo/includes
