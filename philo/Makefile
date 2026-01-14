@@ -4,7 +4,7 @@ NAME = philo
 INCLUDES = -Iincludes
 BUILD_DIR = .build
 
-SRC = main.c
+SRC = main.c utils.c
 
 SRCS = \
 	$(addprefix src/, $(SRC)) \

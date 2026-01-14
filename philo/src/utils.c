@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/14 05:58:20 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/14 04:55:17 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/14 05:49:02 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "utils.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <pthread.h>
-# include "parser.h"
-
-# define ERROR_CODE -1
-
-typedef struct s_data
+int	is_digit(int c)
 {
-	int	nb_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	eat_before_end;
-}	t_data;
+	return (c >= '0' && c <= '9');
+}
 
-#endif
+int ft_atoi(char *nptr)
+{
+	int nb;
+	int i;
+
+	nb = 0;
+	i = 0;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		if (!is_digit(nptr[i]))
+			return (-1);
+		nb = nb * 10 + (nptr[i] - '0');
+		++i;
+	}
+	return (nb);
+}

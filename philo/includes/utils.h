@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/14 05:58:20 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/14 04:55:38 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/14 04:56:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <pthread.h>
-# include "parser.h"
+int	ft_atoi(char *str);
 
-# define ERROR_CODE -1
-
-typedef struct s_data
-{
-	int	nb_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	eat_before_end;
-}	t_data;
-
-#endif
+# endif

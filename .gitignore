@@ -3,4 +3,4 @@ a.out
 builddir
 .vscode
 philosophers
-
+philo/philo

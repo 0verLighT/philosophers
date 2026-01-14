@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/14 05:58:20 by amartel          ###   ########.fr       */
+/*   Created: 2026/01/14 05:07:00 by amartel           #+#    #+#             */
+/*   Updated: 2026/01/14 05:58:42 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
+#include "parser.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <pthread.h>
-# include "parser.h"
-
-# define ERROR_CODE -1
-
-typedef struct s_data
+int	parser(char **av)
 {
-	int	nb_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	eat_before_end;
-}	t_data;
+	t_data data;
 
-#endif
+	printf("%d\n", data.nb_philo);
+	data.nb_philo = ft_atoi(av[1]);
+	if (data.nb_philo == ERROR_CODE)
+		return (ERROR_CODE);
+	printf("%d\n", data.nb_philo);
+	if (data.nb_philo > 200)
+	{
+		printf("trop de philo");
+	}
+}
