@@ -6,16 +6,16 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 05:07:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/15 01:35:06 by amartel          ###   ########.fr       */
+/*   Updated: 2026/01/16 02:23:24 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "parser.h"
 
-int	parser(char **av)
+int parser(char **av)
 {
-	t_data	data;
+	t_data data;
 
 	data.nb_philo = ft_atoi(av[1]);
 	if (data.nb_philo == ERROR_CODE && data.nb_philo > 200)
@@ -29,8 +29,11 @@ int	parser(char **av)
 	data.time_to_sleep = ft_atoi(av[4]);
 	if (data.time_to_sleep == ERROR_CODE)
 		return (ERROR_CODE);
-	data.eat_before_end = ft_atoi(av[5]);
-	if (data.eat_before_end == ERROR_CODE)
-		return (ERROR_CODE);
+	if (av[5])
+	{
+		data.eat_before_end = ft_atoi(av[5]);
+		if (data.eat_before_end == ERROR_CODE)
+			return (ERROR_CODE);
+	}
 	return (0);
 }

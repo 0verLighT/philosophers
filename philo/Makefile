@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address,thread
 NAME = philo
 INCLUDES = -Iincludes
 BUILD_DIR = .build
