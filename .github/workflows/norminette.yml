@@ -5,10 +5,11 @@ on:
     paths-ignore:
       - '.gitignore'
       - 'LICENSE'
-      - 'meson.build'
-      - 'Makefile'
       - 'README.md'
-      - 'shell.nix'
+      - 'flake.nix'
+    paths:
+      - 'philo/**/*.c'
+      - 'philo/**/*.h'
 jobs:
   norminette:
     runs-on: ubuntu-latest
