@@ -4,3 +4,5 @@ builddir
 .vscode
 philosophers
 philo/philo
+.envrc
+.direnv
