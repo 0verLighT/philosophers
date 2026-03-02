@@ -2,12 +2,6 @@ name: norminette 42
 
 on:
   push:
-    paths-ignore:
-      - '.gitignore'
-      - 'LICENSE'
-      - 'README.md'
-      - 'flake.nix'
-      - 'flake.lock'
     paths:
       - 'philo/**/*.c'
       - 'philo/**/*.h'
