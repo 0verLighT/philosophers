@@ -6,3 +6,4 @@ philosophers
 philo/philo
 .envrc
 .direnv
+*.o

@@ -1,21 +1,16 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address,thread
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 NAME = philo
 INCLUDES = -Iincludes
-BUILD_DIR = .build
 
 SRC = main.c utils.c parser.c
 
 SRCS = \
 	$(addprefix src/, $(SRC)) \
 
-OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
+OBJS = $(SRCS:%.c=%.o)
 
-$(BUILD_DIR):
-	@mkdir -p $@
-
-$(BUILD_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
+%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 all: $(NAME)
@@ -27,7 +22,7 @@ re: fclean
 	$(MAKE) all
 
 clean:
-	rm -rf .build/
+	rm -rf $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
