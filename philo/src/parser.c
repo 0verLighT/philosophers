@@ -6,16 +6,16 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 05:07:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/16 02:23:24 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/02 03:47:34 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "parser.h"
 
-int parser(char **av)
+int	parser(char **av)
 {
-	t_data data;
+	t_data	data;
 
 	data.nb_philo = ft_atoi(av[1]);
 	if (data.nb_philo == ERROR_CODE && data.nb_philo > 200)
