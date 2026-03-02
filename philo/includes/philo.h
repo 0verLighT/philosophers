@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/01/14 23:45:03 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/02 20:57:14 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,10 @@ typedef struct s_data
 	int	time_to_sleep;
 	int	eat_before_end;
 }	t_data;
+
+typedef struct s_table
+{
+	pthread_t	thread_table;
+}	t_table;
 
 #endif

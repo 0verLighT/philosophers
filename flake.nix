@@ -11,6 +11,8 @@
       in
       {
         devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
+          # hardeningDisable is optional
+          hardeningDisable = [ "fortify" ];
           nativeBuildInputs = with pkgs; [
             meson
             ninja
