@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:55:11 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/02 20:58:38 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/06 03:25:44 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int ac, char **av)
 	}
 	if (parser(av, data) == ERROR)
 		return (2);
+	
 	free(data);
 	return (0);
 }

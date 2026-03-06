@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/02 20:57:14 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/06 03:26:13 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,10 @@ typedef struct s_table
 	pthread_t	thread_table;
 }	t_table;
 
+typedef struct s_philo
+{
+	pthread_t thread_philo;
+}	t_philo;
+
+t_philo	create_philo(void);
 #endif
