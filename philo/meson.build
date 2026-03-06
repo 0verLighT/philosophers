@@ -35,7 +35,8 @@ inc = include_directories('includes')
 sources = [
   'src/main.c',
   'src/utils.c',
-  'src/parser.c'
+  'src/parser.c',
+  'src/ft_philo.c'
 ]
 
 philosophers = executable(

@@ -1,7 +1,7 @@
 *This project has been created as part of the 42 curriculum by [amartel](https://profile.intra.42.fr/users/amartel)*
 
 # Philosophers
-thread ist tot 
+thread ist tot
 
 # Description
 
