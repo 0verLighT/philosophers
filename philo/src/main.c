@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:55:11 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/06 03:25:44 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/07 04:45:41 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,34 @@ static void	info_prog(void)
 	(void) write(2, "[number_of_times_each_philo_must_eat]\n", 39);
 }
 
+static void free_table(t_table *table)
+{
+	free(table->data);
+	free(table);
+}
+
 int	main(int ac, char **av)
 {
-	t_data	*data;
+	t_table	*table;
 
-	data = malloc(sizeof(t_data));
 	if (ac < 5 || ac > 6)
 	{
 		info_prog();
 		return (1);
 	}
-	if (parser(av, data) == ERROR)
-		return (2);
-	
-	free(data);
+	table = malloc(sizeof(t_table));
+	table->data = malloc(sizeof(t_data));
+	if (!table || !table->data)
+		return (1);
+	if (parser(av, table->data) == ERROR)
+	{
+		free_table(table);
+		return (1);
+	}
+	// if (!join_philo(table))
+	// 	return (1);
+	// if (!ft_table(table))
+	// 	return (1);
+	free_table(table);
 	return (0);
 }

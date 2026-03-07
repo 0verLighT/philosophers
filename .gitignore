@@ -7,3 +7,4 @@ philo/philo
 .envrc
 .direnv
 *.o
+philo/*.json

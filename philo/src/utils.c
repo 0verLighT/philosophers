@@ -6,10 +6,11 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 04:55:17 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/02 20:37:44 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/07 04:30:24 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo.h"
 #include "utils.h"
 
 int	is_digit(int c)
@@ -37,3 +38,25 @@ int	ft_atoi(char *nptr)
 	}
 	return (nb);
 }
+
+long	get_time_ms(void)
+{
+	struct timeval	tv;
+	long			time;
+
+	gettimeofday(&tv, NULL);
+	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	return (time);
+}
+
+// int	join_philo(t_table *table)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (i <= table->data->nb_philo)
+// 	{
+// 		if (pthread_join(0) != 0)
+// 			return (1);
+// 	}
+// }
