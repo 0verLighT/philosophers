@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/07 03:52:14 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/09 03:20:47 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_table
 {
 	long			time;
 	t_data			*data;
+	pthread_mutex_t	*forks;
 	struct s_philo	*t_philo;
 	
 }	t_table;
@@ -45,12 +46,14 @@ typedef struct s_table
 typedef struct s_philo
 {
 	pthread_t		thread_philo;
-	pthread_mutex_t	frok;
 	size_t			id;
+	size_t			left;
+	size_t			right;
 	time_t			time;
 	t_table			*table;
 }	t_philo;
 
-t_philo	*create_philo(size_t id, t_table *table);
+int	create_philo(t_table *table);
+int	ft_table(t_table *table);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:55:11 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/09 03:08:37 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/08 23:39:59 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	info_prog(void)
 
 static void free_table(t_table *table)
 {
-	free(table->t_philo);
 	free(table->data);
 	free(table);
 }
