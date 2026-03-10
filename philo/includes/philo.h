@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/09 03:20:47 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/10 04:23:51 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ typedef struct s_table
 	long			time;
 	t_data			*data;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	printf_lock;
+	pthread_mutex_t	stop;
 	struct s_philo	*t_philo;
+	int				is_dead;
 	
 }	t_table;
 
