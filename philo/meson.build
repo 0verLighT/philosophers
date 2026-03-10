@@ -6,7 +6,7 @@ project(
   license: 'MIT',
   default_options : [
     'warning_level=3',
-    'optimization=0'
+    'optimization=3'
   ]
 )
 
@@ -35,7 +35,7 @@ inc = include_directories('includes')
 sources = [
   'src/main.c',
   'src/utils.c',
-  'src/parser.c',
+  'src/thread_utils.c',
   'src/ft_philo.c'
 ]
 
