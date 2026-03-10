@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 04:23:51 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/10 20:24:39 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ typedef struct s_table
 	pthread_mutex_t	stop;
 	struct s_philo	*t_philo;
 	int				is_dead;
-	
 }	t_table;
 
 typedef struct s_philo
 {
 	pthread_t		thread_philo;
+	pthread_mutex_t	meal;
+	long			last_meal;
 	size_t			id;
 	size_t			left;
 	size_t			right;
@@ -56,7 +57,10 @@ typedef struct s_philo
 	t_table			*table;
 }	t_philo;
 
-int	create_philo(t_table *table);
-int	ft_table(t_table *table);
+int		create_philo(t_table *table);
+int		ft_table(t_table *table);
+void	philo_alone(t_philo *philo);
+void	thread_printf(t_philo *philo, char *state);
+void	anyone_dead(t_table *table);
 
 #endif

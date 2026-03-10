@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 04:55:38 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/07 04:29:50 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/10 20:24:12 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <sys/time.h>
 # define ERROR -1
 
-typedef struct s_table t_table;
+typedef struct s_table	t_table;
 
 int		ft_atoi(char *str);
 /**
@@ -26,6 +26,5 @@ int		ft_atoi(char *str);
  * @return time with long
  */
 long	get_time_ms(void);
-void	join_philo(t_table *table);
 
 #endif
