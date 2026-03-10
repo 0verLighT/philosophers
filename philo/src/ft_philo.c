@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:40:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 20:28:32 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/10 22:18:26 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void	thread_printf(t_philo *philo, char *state)
 {
 	long	time;
 
+	if ((ft_strcmp(state, EAT) == 0)
+		&& philo->table->data->eat_before_end != -1)
+	{
+		pthread_mutex_lock(&philo->meal);
+		++philo->nb_eat;
+		pthread_mutex_unlock(&philo->meal);
+	}
 	pthread_mutex_lock(&philo->table->printf_lock);
 	time = get_time_ms() - philo->table->time;
 	pthread_mutex_lock(&philo->table->stop);
@@ -49,6 +56,8 @@ void	*routine_philo(void *arg)
 	while (!is_finished(philo) && philo->table->data->nb_philo != 1)
 	{
 		pthread_mutex_lock(&philo->table->forks[philo->right]);
+		thread_printf(philo, FORK);
+		pthread_mutex_lock(&philo->table->forks[philo->left]);
 		thread_printf(philo, FORK);
 		pthread_mutex_lock(&philo->meal);
 		philo->last_meal = get_time_ms();
@@ -96,6 +105,7 @@ int	ft_table(t_table *table)
 		table->t_philo[i].right = (i + 1) % table->data->nb_philo;
 		table->t_philo[i].table = table;
 		table->t_philo[i].last_meal = get_time_ms();
+		table->t_philo[i].nb_eat = 0;
 		pthread_mutex_init(&table->forks[i], NULL);
 		pthread_mutex_init(&table->t_philo[i].meal, NULL);
 		++i;

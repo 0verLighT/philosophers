@@ -1,9 +1,9 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 NAME = philo
 INCLUDES = -Iincludes
 
-SRC = main.c utils.c parser.c ft_philo.c
+SRC = main.c utils.c thread_utils.c ft_philo.c
 
 SRCS = \
 	$(addprefix src/, $(SRC)) \

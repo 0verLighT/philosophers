@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 20:24:39 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/10 22:50:44 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
-# include "parser.h"
 # include "action.h"
 # include <sys/time.h>
 
-# define ERROR_CODE -1
+# define ERROR -1
 
 typedef struct s_data
 {
 	int	nb_philo;
-	int	time_to_die;
+	int	td;
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	eat_before_end;
@@ -53,7 +52,7 @@ typedef struct s_philo
 	size_t			id;
 	size_t			left;
 	size_t			right;
-	time_t			time;
+	size_t			nb_eat;
 	t_table			*table;
 }	t_philo;
 

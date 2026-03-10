@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 04:55:17 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 20:25:21 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/10 22:25:22 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,38 +49,18 @@ long	get_time_ms(void)
 	return (time);
 }
 
-void	philo_alone(t_philo *philo)
-{
-	while (1)
-	{
-		pthread_mutex_lock(&philo->table->forks[philo->left]);
-		thread_printf(philo, FORK);
-		return ;
-	}
-}
-
-void	anyone_dead(t_table *table)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 
-	while (1)
+	if (!s1 || !s2)
+		return (1);
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		i = 0;
-		while (i < (size_t) table->data->nb_philo)
-		{
-			pthread_mutex_lock(&table->t_philo[i].meal);
-			if (get_time_ms() - table->t_philo[i].last_meal
-				> table->data->time_to_die)
-			{
-				thread_printf(&table->t_philo[i], DEAD);
-				pthread_mutex_lock(&table->stop);
-				table->is_dead = 1;
-				pthread_mutex_unlock(&table->stop);
-				pthread_mutex_unlock(&table->t_philo[i].meal);
-				return ;
-			}
-			pthread_mutex_unlock(&table->t_philo[i].meal);
-			++i;
-		}
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		++i;
 	}
+	return (0);
 }

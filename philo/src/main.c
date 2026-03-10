@@ -6,12 +6,12 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:55:11 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 20:27:00 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/10 23:00:17 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "parser.h"
+#include "utils.h"
 
 static void	info_prog(void)
 {
@@ -39,6 +39,30 @@ static void	free_table(t_table *table)
 		free(table->forks);
 	free(table->data);
 	free(table);
+}
+
+static int	parser(char **av, t_data *data)
+{
+	data->eat_before_end = -1;
+	data->nb_philo = ft_atoi(av[1]);
+	if (data->nb_philo == ERROR || data->nb_philo > 200 || data->nb_philo < 1)
+		return (ERROR);
+	data->td = ft_atoi(av[2]);
+	if (data->td == ERROR)
+		return (ERROR);
+	data->time_to_eat = ft_atoi(av[3]);
+	if (data->time_to_eat == ERROR)
+		return (ERROR);
+	data->time_to_sleep = ft_atoi(av[4]);
+	if (data->time_to_sleep == ERROR)
+		return (ERROR);
+	if (av[5])
+	{
+		data->eat_before_end = ft_atoi(av[5]);
+		if (data->eat_before_end == ERROR)
+			return (ERROR);
+	}
+	return (0);
 }
 
 int	main(int ac, char **av)
