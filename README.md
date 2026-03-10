@@ -39,4 +39,4 @@ meson install -C build
 
 - [Developpez pthread (FRENCH)](https://franckh.developpez.com/tutoriels/posix/pthreads/)
 - 42 student : some advises (how to create dead logic, parser with ft_atoi)
-- gIA was used to correct the typo in the README.md, and to understand the routine in library pthread.
+- IA was used to correct the typo in the README.md, and to understand the routine in library pthread.
