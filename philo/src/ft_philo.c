@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:40:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/11 18:52:10 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/11 19:08:26 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_table(t_table *table, size_t i)
 {
 	if (pthread_mutex_init(&table->stop, NULL) != 0
 		|| pthread_mutex_init(&table->printf_lock, NULL) != 0)
-			return (0);
+		return (0);
 	while (i < (size_t) table->data->nb_philo)
 	{
 		table->t_philo[i].id = i + 1;

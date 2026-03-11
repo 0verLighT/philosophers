@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:55:11 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/11 18:57:42 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/11 19:15:25 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	info_prog(void)
 	(void) write(2, "[number_of_times_each_philo_must_eat]\n", 39);
 }
 
-static void	free_table(t_table *table)
+static void	free_destroy(t_table *table)
 {
 	size_t	i;
 
@@ -34,6 +34,12 @@ static void	free_table(t_table *table)
 		pthread_mutex_destroy(&table->t_philo[i].meal);
 		++i;
 	}
+}
+
+static void	free_table(t_table *table, int i)
+{
+	if (!i)
+		free_destroy(table);
 	if (table->t_philo)
 		free(table->t_philo);
 	if (table->forks)
@@ -85,14 +91,14 @@ int	main(int ac, char **av)
 	table->t_philo = NULL;
 	if (!table->data || parser(av, table->data) == ERROR)
 	{
-		free_table(table);
+		free_table(table, 1);
 		return (1);
 	}
 	table->t_philo = malloc(sizeof(t_philo) * table->data->nb_philo);
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->data->nb_philo);
 	table->is_dead = 0;
 	if (table->t_philo && table->forks && table)
-		ft_table(table);
-	free_table(table);
+		ft_table(table, 0);
+	free_table(table, 0);
 	return (0);
 }
