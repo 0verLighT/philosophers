@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 05:07:00 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 23:00:02 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/11 18:38:10 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	philo_alone(t_philo *philo)
 {
 	while (1)
 	{
-		pthread_mutex_lock(&philo->table->forks[philo->left]);
 		thread_printf(philo, FORK);
 		return ;
 	}
@@ -36,16 +35,15 @@ static int	require_eat(t_table *table, size_t philo_complete)
 	return (0);
 }
 
-static void	anyone_finsih_eat(t_table *table, size_t *philo_complete, size_t i)
+static void	anyone_finish_eat(t_table *table, size_t *philo_complete, size_t i)
 {
 	if ((size_t) table->data->eat_before_end != 1 && table->t_philo[i].nb_eat
 		>= (size_t) table->data->eat_before_end)
 		++*philo_complete;
 }
 
-void	anyone_dead(t_table *table)
+void	anyone_dead(t_table *table, size_t i)
 {
-	size_t	i;
 	size_t	philo_complete;
 
 	while (1)
@@ -64,10 +62,11 @@ void	anyone_dead(t_table *table)
 				pthread_mutex_unlock(&table->t_philo[i].meal);
 				return ;
 			}
-			anyone_finsih_eat(table, &philo_complete, i);
+			anyone_finish_eat(table, &philo_complete, i);
 			pthread_mutex_unlock(&table->t_philo[i++].meal);
 		}
 		if (require_eat(table, philo_complete))
 			return ;
+		usleep(1);
 	}
 }

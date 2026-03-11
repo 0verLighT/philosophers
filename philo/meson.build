@@ -36,7 +36,7 @@ sources = [
   'src/main.c',
   'src/utils.c',
   'src/thread_utils.c',
-  'src/ft_philo.c'
+  'src/ft_philo.c',
 ]
 
 philosophers = executable(

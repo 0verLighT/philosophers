@@ -6,16 +6,36 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 04:55:17 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 22:25:22 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/11 18:39:38 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "utils.h"
 
-int	is_digit(int c)
+void	content_routine(t_philo *philo, int first, int second)
 {
-	return (c >= '0' && c <= '9');
+	first = philo->left;
+	second = philo->right;
+	if (first > second)
+	{
+		first = philo->right;
+		second = philo->left;
+	}
+	pthread_mutex_lock(&philo->table->forks[first]);
+	thread_printf(philo, FORK);
+	pthread_mutex_lock(&philo->table->forks[second]);
+	thread_printf(philo, FORK);
+	pthread_mutex_lock(&philo->meal);
+	philo->last_meal = get_time_ms();
+	pthread_mutex_unlock(&philo->meal);
+	thread_printf(philo, EAT);
+	usleep(philo->table->data->time_to_eat * 1000);
+	pthread_mutex_unlock(&philo->table->forks[second]);
+	pthread_mutex_unlock(&philo->table->forks[first]);
+	thread_printf(philo, SLEEP);
+	usleep(philo->table->data->time_to_sleep * 1000);
+	thread_printf(philo, THINK);
 }
 
 int	ft_atoi(char *nptr)
@@ -29,7 +49,7 @@ int	ft_atoi(char *nptr)
 		return (ERROR);
 	while (nptr[i])
 	{
-		if (!is_digit(nptr[i]))
+		if (!(nptr[i] >= '0' && nptr[i] <= '9'))
 			return (ERROR);
 		nb = nb * 10 + (nptr[i] - '0');
 		if (nb > 2147483647)

@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:40:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 22:18:26 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/11 18:52:10 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,9 @@ void	*routine_philo(void *arg)
 	if (philo->table->data->nb_philo == 1)
 		philo_alone(philo);
 	if (philo->id % 2)
-		usleep(1500);
+		usleep(philo->table->data->time_to_eat * 500);
 	while (!is_finished(philo) && philo->table->data->nb_philo != 1)
-	{
-		pthread_mutex_lock(&philo->table->forks[philo->right]);
-		thread_printf(philo, FORK);
-		pthread_mutex_lock(&philo->table->forks[philo->left]);
-		thread_printf(philo, FORK);
-		pthread_mutex_lock(&philo->meal);
-		philo->last_meal = get_time_ms();
-		pthread_mutex_unlock(&philo->meal);
-		thread_printf(philo, EAT);
-		usleep(philo->table->data->time_to_eat * 1000);
-		pthread_mutex_unlock(&philo->table->forks[philo->left]);
-		pthread_mutex_unlock(&philo->table->forks[philo->right]);
-		thread_printf(philo, SLEEP);
-		usleep(philo->table->data->time_to_sleep * 1000);
-		thread_printf(philo, THINK);
-	}
+		content_routine(philo, 0, 0);
 	return (NULL);
 }
 
@@ -91,13 +76,11 @@ int	create_philo(t_table *table)
 	return (1);
 }
 
-int	ft_table(t_table *table)
+int	ft_table(t_table *table, size_t i)
 {
-	size_t	i;
-
-	i = 0;
-	pthread_mutex_init(&table->stop, NULL);
-	pthread_mutex_init(&table->printf_lock, NULL);
+	if (pthread_mutex_init(&table->stop, NULL) != 0
+		|| pthread_mutex_init(&table->printf_lock, NULL) != 0)
+			return (0);
 	while (i < (size_t) table->data->nb_philo)
 	{
 		table->t_philo[i].id = i + 1;
@@ -106,14 +89,14 @@ int	ft_table(t_table *table)
 		table->t_philo[i].table = table;
 		table->t_philo[i].last_meal = get_time_ms();
 		table->t_philo[i].nb_eat = 0;
-		pthread_mutex_init(&table->forks[i], NULL);
-		pthread_mutex_init(&table->t_philo[i].meal, NULL);
-		++i;
+		if (pthread_mutex_init(&table->forks[i], NULL) != 0
+			|| pthread_mutex_init(&table->t_philo[i++].meal, NULL) != 0)
+			return (0);
 	}
 	table->time = get_time_ms();
 	if (!create_philo(table))
 		return (0);
-	anyone_dead(table);
+	anyone_dead(table, 0);
 	i = 0;
 	while (i < (size_t) table->data->nb_philo)
 		pthread_join(table->t_philo[i++].thread_philo, NULL);

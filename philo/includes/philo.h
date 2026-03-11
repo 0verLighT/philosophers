@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/10 22:50:44 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/11 19:03:19 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ typedef struct s_philo
 }	t_philo;
 
 int		create_philo(t_table *table);
-int		ft_table(t_table *table);
+int		ft_table(t_table *table, size_t i);
 void	philo_alone(t_philo *philo);
 void	thread_printf(t_philo *philo, char *state);
-void	anyone_dead(t_table *table);
+void	anyone_dead(t_table *table, size_t i);
+void	content_routine(t_philo *philo, int first, int second);
 
 #endif
