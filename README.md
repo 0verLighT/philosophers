@@ -4,6 +4,8 @@
 
 thread ist tot
 
+Special thank to [amblanch](https://profile.intra.42.fr/users/amblanch), my goat 🐐🐐 for help me with helgrind and some data race.
+
 # Description
 
 This project is a simulation of the dining philosophers problem, it using the `pthread` library to create threads and mutexes to synchronize them.
@@ -40,3 +42,4 @@ meson install -C build
 - [Developpez pthread (FRENCH)](https://franckh.developpez.com/tutoriels/posix/pthreads/)
 - 42 student : some advises (how to create dead logic, parser with ft_atoi)
 - IA was used to correct the typo in the README.md, and to understand the routine in library pthread.
+- [amblanch](https://profile.intra.42.fr/users/amblanch) : My goat 🐐🐐
