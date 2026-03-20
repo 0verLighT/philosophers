@@ -1,6 +1,7 @@
 name: norminette 42
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'philo/**/*.c'
@@ -23,3 +24,5 @@ jobs:
         run: python3 -m pip install -U norminette
       - name: norminette Philosophers
         run: norminette ${{ github.workspace }}/philo/src ${{github.workspace}}/philo/includes
+      - name: Make
+        run: make -C philo

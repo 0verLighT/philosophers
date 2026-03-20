@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:55:11 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/11 19:15:25 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/13 18:25:54 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ static void	free_destroy(t_table *table)
 	size_t	i;
 
 	i = 0;
+	if (!table || !table->forks || !table->t_philo)
+		return ;
 	pthread_mutex_destroy(&table->printf_lock);
 	pthread_mutex_destroy(&table->stop);
-	while (&table->forks[i] && &table->t_philo[i] && i
-		< (size_t) table->data->nb_philo)
+	while (i < (size_t) table->data->nb_philo)
 	{
 		pthread_mutex_destroy(&table->forks[i]);
 		pthread_mutex_destroy(&table->t_philo[i].meal);
