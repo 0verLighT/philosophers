@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:40:55 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/20 15:59:47 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/23 22:59:59 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	*routine_philo(void *arg)
 	if (philo->table->data->nb_philo == 1)
 		philo_alone(philo);
 	if (philo->id % 2)
-		ft_usleep(philo->table->data->time_to_eat);
+		ft_usleep(philo->table->data->time_to_eat, philo);
 	while (!is_finished(philo) && philo->table->data->nb_philo != 1)
 		content_routine(philo, 0, 0);
 	return (NULL);

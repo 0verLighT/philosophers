@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 00:54:32 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/20 00:30:52 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/23 23:04:08 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	philo_alone(t_philo *philo);
 void	thread_printf(t_philo *philo, char *state);
 void	anyone_dead(t_table *table, size_t i);
 void	content_routine(t_philo *philo, int first, int second);
-void	ft_usleep(long ms);
+void	ft_usleep(long ms, t_philo *philo);
+int		is_finished(t_philo *philo);
 
 #endif

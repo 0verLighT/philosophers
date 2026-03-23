@@ -6,7 +6,7 @@
 /*   By: amartel <amartel@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 04:55:17 by amartel           #+#    #+#             */
-/*   Updated: 2026/03/20 16:13:33 by amartel          ###   ########.fr       */
+/*   Updated: 2026/03/23 23:11:29 by amartel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	content_routine(t_philo *philo, int first, int second)
 	philo->last_meal = get_time_ms();
 	pthread_mutex_unlock(&philo->meal);
 	thread_printf(philo, EAT);
-	ft_usleep(philo->table->data->time_to_eat);
+	ft_usleep(philo->table->data->time_to_eat, philo);
 	pthread_mutex_unlock(&philo->table->forks[second]);
 	pthread_mutex_unlock(&philo->table->forks[first]);
 	thread_printf(philo, SLEEP);
-	ft_usleep(philo->table->data->time_to_sleep);
+	ft_usleep(philo->table->data->time_to_sleep, philo);
 	thread_printf(philo, THINK);
 }
 
@@ -85,11 +85,15 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void	ft_usleep(long ms)
+void	ft_usleep(long ms, t_philo *philo)
 {
 	long	start;
 
 	start = get_time_ms();
 	while (get_time_ms() - start < ms)
+	{
 		usleep(1);
+		if (is_finished(philo))
+			break ;
+	}
 }
