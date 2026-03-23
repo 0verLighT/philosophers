@@ -40,7 +40,7 @@ sources = files(
 )
 
 philosophers = executable(
-  'philo',
+  'philo_bonus',
   sources,
   dependencies : thread_dep,
   include_directories : inc,
